@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 using PawLocator.Models.DbObjects;
+using PawLocator.Models;
 
 namespace PawLocator.Data
 {
@@ -18,6 +16,7 @@ namespace PawLocator.Data
         }
 
         public virtual DbSet<Post> Posts { get; set; } = null!;
+        public virtual DbSet<Update> Updates { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -31,7 +30,7 @@ namespace PawLocator.Data
         {
             modelBuilder.Entity<Post>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.Id);
 
                 entity.ToTable("Post");
 
@@ -48,5 +47,7 @@ namespace PawLocator.Data
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+        public DbSet<PawLocator.Models.PostModel>? PostModel { get; set; }
     }
 }

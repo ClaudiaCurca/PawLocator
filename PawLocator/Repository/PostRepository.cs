@@ -1,10 +1,12 @@
-﻿using PawLocator.Data;
+﻿using Microsoft.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
+using PawLocator.Data;
 using PawLocator.Models;
 using PawLocator.Models.DbObjects;
 
 namespace PawLocator.Repository
 {
-    public class PostRepository
+    public class PostRepository : IRepository<Post>
     {
         public ApplicationDbContext dbContext;
 
@@ -17,49 +19,32 @@ namespace PawLocator.Repository
             this.dbContext = dbContext;
         }
 
-        public List<PostModel> GetAllPosts()
+        public async Task<List<Post>> GetAllAsync()
         {
-            List<PostModel> postList = new List<PostModel>();
-            foreach (Post p in dbContext.Posts)
-            {
-                postList.Add(MapDbObjectToModel(p));
-            }
-            return postList;
+            return await dbContext.Posts.ToListAsync();
         }
 
-        private PostModel MapDbObjectToModel(Post dbPost)
+        public async Task<Post?> GetByIdAsync(Guid id)
         {
-            PostModel postModel = new PostModel();
-            if (dbPost != null)
-            {
-                postModel.Id = dbPost.Id;
-                postModel.ParentPostId = dbPost.ParentPostId;
-                postModel.Type = (PostType)dbPost.PostType;
-                postModel.Title = dbPost.Title;
-                postModel.Description = dbPost.Description;
-                postModel.ImageUrl = dbPost.ImageUrl;
-                postModel.Location = dbPost.Location;
-                postModel.CreatedAt = dbPost.CreatedAt;
-            }
-            return postModel;
-
+            return await dbContext.Posts.FindAsync(id);
         }
-        private Post MapModelToDbObject(PostModel postModel)
-        {
-            Post dbPost = new Post();
-            if (dbPost != null)
-            {
-                dbPost.Id = postModel.Id;
-                dbPost.ParentPostId = postModel.ParentPostId;
-                dbPost.PostType = (int)postModel.Type;
-                dbPost.Title = postModel.Title;
-                dbPost.Description = postModel.Description;
-                dbPost.ImageUrl = postModel.ImageUrl;
-                dbPost.Location = postModel.Location;
-                dbPost.CreatedAt = postModel.CreatedAt;
 
-            }
-            return dbPost;
+        public async Task AddAsync(Post post)
+        {
+            await dbContext.Posts.AddAsync(post);
+            await dbContext.SaveChangesAsync();
+        }
+
+        public async Task UpdateAsync(Post entity)
+        {
+            dbContext.Posts.Update(entity);
+            await dbContext.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(Post entity)
+        {
+            dbContext.Posts.Remove(entity);
+            await dbContext.SaveChangesAsync();
         }
     }
 }

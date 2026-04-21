@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace PawLocator.Models.DbObjects
 {
-    public partial class Post
+    public class Update
     {
         [Key]
         public Guid Id { get; set; }
+
+        public Guid PostId { get; set; }
+        public Post Post { get; set; }
+
         public string? Title { get; set; }
         public string Description { get; set; } = null!;
         public string? ImageUrl { get; set; }
@@ -15,6 +17,6 @@ namespace PawLocator.Models.DbObjects
         public int PostType { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
-        public ICollection<Update> Updates { get; set; } = new List<Update>();
+
     }
 }
