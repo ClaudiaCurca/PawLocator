@@ -62,6 +62,7 @@ namespace PawLocator.Services
         private UpdateDto MapToModel(Update p) => new UpdateDto
         {
             Id = p.Id,
+            PostId = p.PostId,
             Message = p.Message,
             CreatedAt = p.CreatedAt
         };
@@ -69,6 +70,7 @@ namespace PawLocator.Services
         private Update MapToEntity(UpdateDto m) => new Update
         {
             Id = m.Id == Guid.Empty ? Guid.NewGuid() : m.Id,
+            PostId = m.PostId,
             Message = m.Message,
             CreatedAt = m.CreatedAt
         };

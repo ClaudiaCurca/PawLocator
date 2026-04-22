@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.Host;
 using PawLocator.Data;
 using PawLocator.DTOs;
 using PawLocator.Repository;
@@ -34,7 +35,7 @@ namespace PawLocator.Controllers
         // GET: UpdateController/Create
         public ActionResult Create()
         {
-            return View();
+            return View("Create");
         }
 
         // POST: UpdateController/Create
