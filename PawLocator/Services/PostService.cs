@@ -1,6 +1,7 @@
 ﻿using PawLocator.Models.DbObjects;
 using PawLocator.Repository;
 using PawLocator.DTOs;
+using Microsoft.Extensions.Hosting;
 
 namespace PawLocator.Services
 {
@@ -20,6 +21,12 @@ namespace PawLocator.Services
             return posts.Select(MapToModel).ToList();
         }
 
+        public async Task<PostDto?> GetByIdAsync(Guid id)
+        {
+            var post = await repository.GetByIdAsync(id);
+
+            return post == null ? null : MapToModel(post);
+        }
 
         public async Task CreateAsync(PostDto model)
         {
@@ -69,7 +76,15 @@ namespace PawLocator.Services
             Description = p.Description,
             ImageUrl = p.ImageUrl,
             Location = p.Location,
-            CreatedAt = p.CreatedAt
+            CreatedAt = p.CreatedAt,
+
+                    Updates = p.Updates.Select(u => new UpdateDto
+                    {
+                        Id = u.Id,
+                        Message = u.Message,
+                        CreatedAt = u.CreatedAt
+                    }).ToList()
+        
         };
 
         private Post MapToEntity(PostDto m) => new Post

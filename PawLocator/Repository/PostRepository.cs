@@ -24,6 +24,9 @@ namespace PawLocator.Repository
 
         public async Task<Post?> GetByIdAsync(Guid id)
         {
+            return await dbContext.Posts
+                .Include(p => p.Updates)
+                .FirstOrDefaultAsync(p => p.Id == id);
             return await dbContext.Posts.FindAsync(id);
         }
 

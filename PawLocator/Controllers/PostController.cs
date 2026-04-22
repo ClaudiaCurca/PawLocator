@@ -27,9 +27,14 @@ namespace PawLocator.Controllers
         }
 
         // GET: PostController/Details/5
-        public ActionResult Details(int id)
+        public async Task<IActionResult> Details(Guid id)
         {
-            return View();
+            var post = await postService.GetByIdAsync(id);
+
+            if (post == null)
+                return NotFound();
+
+            return View(post);
         }
 
         // GET: PostController/Create

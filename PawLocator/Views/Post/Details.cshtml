@@ -1,0 +1,27 @@
+﻿@model PawLocator.DTOs.PostDto
+
+<h2>@Model.Title</h2>
+
+<p>@Model.Description</p>
+<p>@Model.Location</p>
+
+<hr />
+
+<h3>Updates</h3>
+
+@if (Model.Updates.Any())
+{
+    foreach (var update in Model.Updates.OrderByDescending(u => u.CreatedAt))
+    {
+        <div class="card mb-2">
+            <div class="card-body">
+                <p>@update.Message</p>
+                <small>@update.CreatedAt</small>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <p>No updates yet.</p>
+}
