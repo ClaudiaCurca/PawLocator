@@ -1,6 +1,6 @@
 ﻿using PawLocator.Models.DbObjects;
-using PawLocator.Models;
 using PawLocator.Repository;
+using PawLocator.DTOs;
 
 namespace PawLocator.Services
 {
@@ -13,7 +13,7 @@ namespace PawLocator.Services
             this.repository = repository;
         }
 
-        public async Task<List<PostModel>> GetAllAsync()
+        public async Task<List<PostDto>> GetAllAsync()
         {
             var posts = await repository.GetAllAsync();
 
@@ -21,7 +21,7 @@ namespace PawLocator.Services
         }
 
 
-        public async Task CreateAsync(PostModel model)
+        public async Task CreateAsync(PostDto model)
         {
             var entity = MapToEntity(model);
 
@@ -33,7 +33,7 @@ namespace PawLocator.Services
             await repository.AddAsync(entity);
         }
 
-        public async Task UpdateAsync(PostModel model)
+        public async Task UpdateAsync(PostDto model)
         {
             var existingPost = await repository.GetByIdAsync(model.Id);
 
@@ -46,7 +46,6 @@ namespace PawLocator.Services
             existingPost.Description = model.Description;
             existingPost.ImageUrl = model.ImageUrl;
             existingPost.Location = model.Location;
-            existingPost.PostType = (int)model.Type;
 
             await repository.UpdateAsync(existingPost);
         }
@@ -63,26 +62,24 @@ namespace PawLocator.Services
             await repository.DeleteAsync(post);
         }
 
-        private PostModel MapToModel(Post p) => new PostModel
+        private PostDto MapToModel(Post p) => new PostDto
         {
             Id = p.Id,
             Title = p.Title,
             Description = p.Description,
             ImageUrl = p.ImageUrl,
             Location = p.Location,
-            CreatedAt = p.CreatedAt,
-            Type = (PostType)p.PostType
+            CreatedAt = p.CreatedAt
         };
 
-        private Post MapToEntity(PostModel m) => new Post
+        private Post MapToEntity(PostDto m) => new Post
         {
             Id = m.Id == Guid.Empty ? Guid.NewGuid() : m.Id,
             Title = m.Title,
             Description = m.Description,
             ImageUrl = m.ImageUrl,
             Location = m.Location,
-            CreatedAt = m.CreatedAt,
-            PostType = (int)m.Type
+            CreatedAt = m.CreatedAt
         };
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace PawLocator.Models.DbObjects
 {
@@ -12,7 +10,6 @@ namespace PawLocator.Models.DbObjects
         public string Description { get; set; } = null!;
         public string? ImageUrl { get; set; }
         public string? Location { get; set; }
-        public int PostType { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         public ICollection<Update> Updates { get; set; } = new List<Update>();

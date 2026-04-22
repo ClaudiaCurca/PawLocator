@@ -1,7 +1,5 @@
-﻿using Microsoft.CodeAnalysis;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using PawLocator.Data;
-using PawLocator.Models;
 using PawLocator.Models.DbObjects;
 
 namespace PawLocator.Repository

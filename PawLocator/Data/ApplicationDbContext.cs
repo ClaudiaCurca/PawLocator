@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PawLocator.Models.DbObjects;
-using PawLocator.Models;
+using PawLocator.DTOs;
 
 namespace PawLocator.Data
 {
@@ -48,6 +48,8 @@ namespace PawLocator.Data
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
-        public DbSet<PawLocator.Models.PostModel>? PostModel { get; set; }
+        public DbSet<PostDto>? PostModel { get; set; }
+
+        public DbSet<PawLocator.DTOs.UpdateDto>? UpdateDto { get; set; }
     }
 }
