@@ -1,18 +1,59 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
+}
+
+html, body {
+    height: 100%;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin: 0;
+    background: #f4f6f9;
+    flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #212529;
 }
+
+main {
+    flex: 1;
+    padding: 20px 0;
+}
+
+footer {
+    margin-top: auto;
+    background: #ffffff;
+    border-top: 1px solid #e9ecef;
+    padding: 20px 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+.card {
+    border: none;
+    border-radius: 12px;
+    transition: 0.2s ease-in-out;
+}
+
+    .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }

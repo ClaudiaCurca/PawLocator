@@ -1,8 +1,47 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿<div class="container mt-5">
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <div class="text-center mb-5">
+        <h1 class="display-4">🐾 PawLocator</h1>
+        <p class="lead">
+            Help reunite lost pets with their owners
+        </p>
+
+        <a asp-controller="Post"
+           asp-action="Index"
+           class="btn btn-primary btn-lg mt-3">
+            View Lost & Found Pets
+        </a>
+
+        <a asp-controller="Post"
+           asp-action="Create"
+           class="btn btn-outline-primary btn-lg mt-3">
+            Create Post
+        </a>
+    </div>
+
+    <div class="row mt-5">
+
+        <div class="col-md-4 text-center">
+            <div class="card shadow-sm p-3">
+                <h4>📍 Report</h4>
+                <p>Create a post for a lost or found pet</p>
+            </div>
+        </div>
+
+        <div class="col-md-4 text-center">
+            <div class="card shadow-sm p-3">
+                <h4>🔎 Search</h4>
+                <p>Browse posts near your location</p>
+            </div>
+        </div>
+
+        <div class="col-md-4 text-center">
+            <div class="card shadow-sm p-3">
+                <h4>❤️ Reunite</h4>
+                <p>Help pets return home safely</p>
+            </div>
+        </div>
+
+    </div>
+
 </div>
