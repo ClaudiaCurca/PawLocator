@@ -1,5 +1,6 @@
 ﻿using PawLocator.DTOs;
 using PawLocator.Models.DbObjects;
+using PawLocator.Patterns.Strategies;
 using PawLocator.Repository;
 
 namespace PawLocator.Services
@@ -23,6 +24,16 @@ namespace PawLocator.Services
 
         public async Task CreateAsync(UpdateDto model)
         {
+            IUpdateStrategy strategy = model.Type switch
+            {
+                "lost" => new LostUpdateStrategy(),
+                "found" => new FoundUpdateStrategy(),
+                "seen" => new SeenUpdateStrategy(),
+                _ => new SeenUpdateStrategy()
+            };
+
+            model.Message = strategy.FormatMessage(model.Message);
+
             var entity = MapToEntity(model);
 
             if (entity.Id == Guid.Empty)

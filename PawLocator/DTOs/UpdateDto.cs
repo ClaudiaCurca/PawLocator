@@ -10,5 +10,6 @@
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
+        public string Type { get; set; }
     }
 }
