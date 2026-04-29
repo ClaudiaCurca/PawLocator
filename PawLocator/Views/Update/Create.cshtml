@@ -32,6 +32,18 @@
                 </select>
             </div>
 
+            <button type="submit" class="btn btn-primary">
+                ➕ Create Update
+            </button>
+
+            <a asp-controller="Post"
+               asp-action="Details"
+               asp-route-id="@Model.PostId"
+               class="btn btn-secondary">
+                Cancel
+            </a>
+
+
         </form>
     </div>
 </div>

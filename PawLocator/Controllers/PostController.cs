@@ -38,13 +38,14 @@ namespace PawLocator.Controllers
         }
 
         // GET: PostController/Create
+        [HttpGet]
         public ActionResult Create()
         {
             return View("Create");
         }
 
-        // POST: PostController/Create
-        [HttpPost]
+            // POST: PostController/Create
+            [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(PostDto model)
         {

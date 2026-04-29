@@ -33,9 +33,14 @@ namespace PawLocator.Controllers
         }
 
         // GET: UpdateController/Create
-        public ActionResult Create()
+        public ActionResult Create(Guid postId)
         {
-            return View("Create");
+            var model = new UpdateDto
+            {
+                PostId = postId
+            };
+
+            return View("Create", model);
         }
 
         // POST: UpdateController/Create
