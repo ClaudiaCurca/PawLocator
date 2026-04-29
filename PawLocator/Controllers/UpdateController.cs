@@ -10,12 +10,11 @@ namespace PawLocator.Controllers
     public class UpdateController : Controller
     {
         private readonly UpdateService updateService;
-        private readonly UpdateRepository updateRepository;
 
-        public UpdateController(ApplicationDbContext context)
+
+        public UpdateController(UpdateService updateService)
         {
-            updateRepository = new UpdateRepository(context);
-            updateService = new UpdateService(updateRepository);
+            this.updateService = updateService;
  
         }
         // GET: UpdateController
@@ -55,7 +54,7 @@ namespace PawLocator.Controllers
 
             await updateService.CreateAsync(model);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", "Post", new { id = model.PostId });
         }
 
         // GET: UpdateController/Edit/5

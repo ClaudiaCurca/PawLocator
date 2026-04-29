@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using PawLocator.Data;
+using PawLocator.Patterns.Factories;
+using PawLocator.Repository;
+using PawLocator.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +14,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<UpdateRepository>();
+builder.Services.AddScoped<UpdateService>();
+builder.Services.AddScoped<IUpdateStrategyFactory, UpdateStrategyFactory>();
 
 var app = builder.Build();
 

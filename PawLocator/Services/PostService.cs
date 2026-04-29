@@ -1,7 +1,6 @@
 ﻿using PawLocator.Models.DbObjects;
 using PawLocator.Repository;
 using PawLocator.DTOs;
-using Microsoft.Extensions.Hosting;
 
 namespace PawLocator.Services
 {
