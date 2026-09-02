@@ -23,6 +23,18 @@ namespace PawLocator.Services
             return updates.Select(MapToModel).ToList();
         }
 
+        public async Task<UpdateDto> GetByIdAsync(Guid id)
+        {
+            var update = await repository.GetByIdAsync(id);
+
+            if(update == null)
+            {
+                return null;
+            }
+
+            return MapToModel(update);
+        }
+
         public async Task CreateAsync(UpdateDto model)
         {
             var strategy = factory.Create(model.Type);

@@ -26,9 +26,15 @@ namespace PawLocator.Controllers
         }
 
         // GET: UpdateController/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(Guid id)
         {
-            return View();
+            var update = await updateService.GetByIdAsync(id);
+
+            if(update == null)
+            {
+                return NotFound();
+            }
+            return View(update);
         }
 
         // GET: UpdateController/Create
@@ -79,24 +85,37 @@ namespace PawLocator.Controllers
         }
 
         // GET: UpdateController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            return View();
+            var update = await updateService.GetByIdAsync(id);
+            if (update == null)
+            {
+                return NotFound();
+            }
+            return View(update);
         }
 
         // POST: UpdateController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            try
+            var update = await updateService.GetByIdAsync(id);
+
+            if (update == null)
             {
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
-            catch
-            {
-                return View();
-            }
+
+            var postId = update.PostId;
+
+            await updateService.DeleteAsync(id);
+
+            return RedirectToAction(
+                "Details",
+                "Post",
+                new { id = postId }
+            );
         }
     }
 }

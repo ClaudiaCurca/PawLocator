@@ -8,10 +8,6 @@ namespace PawLocator.Repository
     {
         public ApplicationDbContext dbContext;
 
-        public UpdateRepository()
-        {
-            this.dbContext = new ApplicationDbContext();
-        }
         public UpdateRepository(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;

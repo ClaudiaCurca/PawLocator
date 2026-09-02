@@ -8,10 +8,6 @@ namespace PawLocator.Repository
     {
         public ApplicationDbContext dbContext;
 
-        public PostRepository()
-        {
-            this.dbContext = new ApplicationDbContext();
-        }
         public PostRepository(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
@@ -27,7 +23,6 @@ namespace PawLocator.Repository
             return await dbContext.Posts
                 .Include(p => p.Updates)
                 .FirstOrDefaultAsync(p => p.Id == id);
-            return await dbContext.Posts.FindAsync(id);
         }
 
         public async Task AddAsync(Post post)
