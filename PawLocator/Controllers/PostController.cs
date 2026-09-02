@@ -11,12 +11,10 @@ namespace PawLocator.Controllers
     {
 
         private readonly PostService postService;
-        private readonly PostRepository postRepository;
 
-        public PostController(ApplicationDbContext context)
+        public PostController(PostService postService)
         {
-            postRepository = new PostRepository(context);
-            postService = new PostService(postRepository);
+            this.postService = postService;
         }
         // GET: PostController
         public async Task<ActionResult> Index()

@@ -17,6 +17,9 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<UpdateRepository>();
 builder.Services.AddScoped<UpdateService>();
+builder.Services.AddScoped<PostRepository>();
+builder.Services.AddScoped<PostService>();
+
 builder.Services.AddScoped<IUpdateStrategyFactory, UpdateStrategyFactory>();
 
 var app = builder.Build();
