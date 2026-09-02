@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.Host;
-using PawLocator.Data;
 using PawLocator.DTOs;
-using PawLocator.Repository;
 using PawLocator.Services;
 
 namespace PawLocator.Controllers
@@ -15,7 +12,7 @@ namespace PawLocator.Controllers
         public UpdateController(UpdateService updateService)
         {
             this.updateService = updateService;
- 
+
         }
         // GET: UpdateController
         public async Task<ActionResult> Index()
@@ -30,7 +27,7 @@ namespace PawLocator.Controllers
         {
             var update = await updateService.GetByIdAsync(id);
 
-            if(update == null)
+            if (update == null)
             {
                 return NotFound();
             }
@@ -61,27 +58,6 @@ namespace PawLocator.Controllers
             await updateService.CreateAsync(model);
 
             return RedirectToAction("Details", "Post", new { id = model.PostId });
-        }
-
-        // GET: UpdateController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: UpdateController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
 
         // GET: UpdateController/Delete/5

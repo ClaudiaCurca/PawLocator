@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using PawLocator.Data;
+﻿using Microsoft.AspNetCore.Mvc;
 using PawLocator.DTOs;
-using PawLocator.Repository;
 using PawLocator.Services;
 
 namespace PawLocator.Controllers
@@ -57,46 +54,32 @@ namespace PawLocator.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: PostController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: PostController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
         // GET: PostController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
-            return View();
+            var post = await postService.GetByIdAsync(id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+            return View(post);
         }
 
         // POST: PostController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            try
+            var post = await postService.GetByIdAsync(id);
+            if (post == null)
             {
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
-            catch
-            {
-                return View();
-            }
+
+            await postService.DeleteAsync(id);
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

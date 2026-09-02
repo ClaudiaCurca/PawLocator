@@ -49,6 +49,8 @@ namespace PawLocator.Data
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
         public DbSet<PawLocator.DTOs.UpdateDto>? UpdateDto { get; set; }
+
+        public DbSet<PawLocator.DTOs.PostDto>? PostDto { get; set; }
     }
 }
 
