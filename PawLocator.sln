@@ -5,7 +5,12 @@ VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PawLocator", "PawLocator\PawLocator.csproj", "{A6178F63-B4D0-4775-93FE-96D2EAC27091}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PawLocator.Tests", "PawLocator.Tests\PawLocator.Tests.csproj", "{546D714F-AD42-4226-9742-8939B4F5663A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PawLocator.Tests", "PawLocator.Tests\PawLocator.Tests.csproj", "{546D714F-AD42-4226-9742-8939B4F5663A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A6E99296-C4C4-4610-A673-8BC414D57672}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

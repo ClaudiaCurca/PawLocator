@@ -4,9 +4,7 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>UpdateDto</h4>
+<h1>Create Update</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -40,13 +38,15 @@
                 Cancel
             </a>
 
+            <a asp-controller="Uodate"
+               asp-action="Index"
+               class="btn btn-secondary mb-3">
+                Back
+            </a>
+
 
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
